@@ -12,7 +12,9 @@
   h1 { font-size: 21px; margin: 0 0 10px; line-height: 1.5; }
   p { color: #c9d4e3; line-height: 1.6; margin: 6px 0; }
   .en { display: block; font-size: 13px; color: #9fb0c8; font-weight: 400; }
-  a.btn { display: inline-block; margin-top: 22px; padding: 18px 36px; border-radius: 12px; background: #fff; color: #0A2540;
+  .state { margin-top: 22px; }
+  .msg { display: inline-block; padding: 14px 22px; border-radius: 12px; background: #ffffff14; color: #fff; font-size: 17px; font-weight: 700; }
+  a.btn { display: inline-block; padding: 18px 36px; border-radius: 12px; background: #fff; color: #0A2540;
           font-size: 20px; font-weight: 700; text-decoration: none; }
   a.btn .en { color: #5D6778; }
 </style>
@@ -21,7 +23,26 @@
 <main>
   <h1>NGS EXPO 2026　招待講演2<br>「AIに嫌われる勇気」のアンケート<span class="en">Survey for invited talk 2, NGS EXPO 2026</span></h1>
   <p>約3分・匿名です。<span class="en">About 3 minutes, anonymous.</span></p>
-  <a class="btn" href="https://survey-redirect-75722486315.asia-northeast1.run.app/" rel="noreferrer">アンケートを開く<span class="en">Open the survey</span></a>
+  <div class="state" id="state">
+    <span class="msg">10月21日（水）10:40 から開きます<span class="en">Opens on 21 October 2026 at 10:40 (Japan time)</span></span>
+  </div>
 </main>
+<script>
+  // Opens only during the talk (the live tally counts answers from 10:40 JST); before and after, no link is shown.
+  (function () {
+    var OPEN = Date.parse('2026-10-21T10:40:00+09:00'), CLOSE = Date.parse('2026-10-21T11:30:00+09:00');
+    var el = document.getElementById('state');
+    function render() {
+      var t = Date.now();
+      if (t >= CLOSE) {
+        el.innerHTML = '<span class="msg">アンケートの受付は終了しました。ご協力ありがとうございました。<span class="en">The survey is closed. Thank you.</span></span>';
+      } else if (t >= OPEN) {
+        el.innerHTML = '<a class="btn" href="https://survey-redirect-75722486315.asia-northeast1.run.app/" rel="noreferrer">アンケートを開く<span class="en">Open the survey</span></a>';
+      }
+    }
+    render();
+    setInterval(render, 30000);
+  })();
+</script>
 </body>
 </html>
