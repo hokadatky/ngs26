@@ -4,45 +4,33 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>NGS EXPO 2026 アンケート</title>
+<title>岡山大学の講義のアンケート / Okayama University lecture survey</title>
 <style>
-  body { margin: 0; font-family: -apple-system, "Hiragino Sans", "Noto Sans JP", sans-serif; background: #0A2540; color: #fff;
-         min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; }
-  main { padding: 32px 20px; max-width: 440px; }
-  h1 { font-size: 21px; margin: 0 0 10px; line-height: 1.5; }
-  p { color: #c9d4e3; line-height: 1.6; margin: 6px 0; }
-  .en { display: block; font-size: 13px; color: #9fb0c8; font-weight: 400; }
-  .state { margin-top: 22px; }
-  .msg { display: inline-block; padding: 14px 22px; border-radius: 12px; background: #ffffff14; color: #fff; font-size: 17px; font-weight: 700; }
-  a.btn { display: inline-block; padding: 18px 36px; border-radius: 12px; background: #fff; color: #0A2540;
-          font-size: 20px; font-weight: 700; text-decoration: none; }
-  a.btn .en { color: #5D6778; }
+  body { margin: 0; font: 17px/1.6 -apple-system, "Hiragino Sans", "Noto Sans JP", "Segoe UI", sans-serif; color: #1d2433; background: #fff; }
+  header { background: #0A2540; color: #fff; padding: 16px 18px; }
+  header b { display: block; font-size: 19px; } header span { font-size: 13px; opacity: .85; }
+  main { max-width: 560px; margin: 0 auto; padding: 22px 16px; }
+  .en { display: block; color: #5b6475; font-size: 14px; }
+  a.btn { display: block; text-align: center; margin: 22px 0; padding: 16px; background: #0A2540; color: #fff; font-weight: 800; border-radius: 12px; text-decoration: none; font-size: 19px; }
+  a.btn span { display: block; font-size: 13px; font-weight: 400; color: #dfe6f2; }
+  .msg { padding: 14px; background: #f3f6fb; border-radius: 10px; }
 </style>
 </head>
 <body>
+<header><b>岡山大学の講義のアンケート</b><span>Survey for the Okayama University lecture, 6 November 2026</span></header>
 <main>
-  <h1>NGS EXPO 2026　招待講演2<br>「AIに嫌われる勇気」のアンケート<span class="en">Survey for invited talk 2, NGS EXPO 2026</span></h1>
   <p>約3分・匿名です。<span class="en">About 3 minutes, anonymous.</span></p>
-  <div class="state" id="state">
-    <span class="msg">10月21日（水）10:40 から開きます<span class="en">Opens on 21 October 2026 at 10:40 (Japan time)</span></span>
+  <div id="open" hidden>
+    <a class="btn" href="https://survey-redirect-nms4ez2tra-an.a.run.app">アンケートを開く<span>Open the survey</span></a>
+    <p>番号をお持ちの方（スマホから PC に替えたときなど）は、開いた画面の「番号で戻る」に番号を入れてください。<span class="en">If you already have a number (for example, when you switch from your phone to a PC), enter it under "Return with it" on the page that opens.</span></p>
   </div>
+  <p class="msg" id="before" hidden>11月6日 15:00 ごろから開きます。<span class="en">Opens on 6 November at about 15:00 (Japan time).</span></p>
+  <p class="msg" id="after" hidden>受付は終了しました。ご協力ありがとうございました。<span class="en">The survey is closed. Thank you.</span></p>
 </main>
 <script>
-  // Opens only during the talk (the live tally counts answers from 10:40 JST); before and after, no link is shown.
-  (function () {
-    var OPEN = Date.parse('2026-10-21T10:40:00+09:00'), CLOSE = Date.parse('2026-10-21T11:30:00+09:00');
-    var el = document.getElementById('state');
-    function render() {
-      var t = Date.now();
-      if (t >= CLOSE) {
-        el.innerHTML = '<span class="msg">アンケートの受付は終了しました。ご協力ありがとうございました。<span class="en">The survey is closed. Thank you.</span></span>';
-      } else if (t >= OPEN) {
-        el.innerHTML = '<a class="btn" href="https://survey-redirect-75722486315.asia-northeast1.run.app/" rel="noreferrer">アンケートを開く<span class="en">Open the survey</span></a>';
-      }
-    }
-    render();
-    setInterval(render, 30000);
-  })();
+  // open on 6 November 2026, 14:30 to 22:00 Japan time (the survey and the workshop themselves are switched by the lecturer)
+  const now = Date.now(), from = Date.parse('2026-11-06T14:30:00+09:00'), to = Date.parse('2026-11-06T22:00:00+09:00');
+  document.getElementById(now < from ? 'before' : now > to ? 'after' : 'open').hidden = false;
 </script>
 </body>
 </html>
