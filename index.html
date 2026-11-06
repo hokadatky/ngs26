@@ -28,8 +28,8 @@
   <p class="msg" id="after" hidden>受付は終了しました。ご協力ありがとうございました。<span class="en">The survey is closed. Thank you.</span></p>
 </main>
 <script>
-  // open on 6 November 2026, 14:30 to 22:00 Japan time (the survey and the workshop themselves are switched by the lecturer)
-  const now = Date.now(), from = Date.parse('2026-11-06T14:30:00+09:00'), to = Date.parse('2026-11-06T22:00:00+09:00');
+  // open on 6 November 2026, 14:00 to 22:00 Japan time (the survey and the workshop themselves are switched by the lecturer)
+  const now = Date.now(), from = Date.parse('2026-11-06T14:00:00+09:00'), to = Date.parse('2026-11-06T22:00:00+09:00');
   document.getElementById(now < from ? 'before' : now > to ? 'after' : 'open').hidden = false;
 </script>
 </body>
